@@ -1,0 +1,37 @@
+#!/bin/bash
+function install_package() {
+	if [[ ! "$#" -eq "1" ]]
+	then
+		echo "Expected exactly one argument!";
+	fi
+
+	PACKAGE="$1"
+
+	echo "Installing $PACKAGE!"
+
+	{{ if eq .chezmoi.os "linux" -}}
+	sudo apt install "$PACKAGE"
+	{{ else -}}
+	echo "NOT SURE HOW TO INSTALL $PACKAGE ON THIS OS";
+	exit -1;
+	{{ end -}}
+}
+
+function install_font() {
+	install_package $@
+}
+
+install_package ripgrep
+install_package fd-find
+
+# Fonts
+install_font fonts-firacode
+
+# Install starship
+{{ if eq .chezmoi.os "linux" -}}
+curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir="$HOME/.local/bin"
+{{ else -}}
+echo "NOT SURE HOW TO INSTALL STARSHIP ON THIS OS";
+exit -1;
+{{ end -}}
+

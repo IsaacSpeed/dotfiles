@@ -43,3 +43,8 @@ safe_set globstar
 
 # append to the history file, don't overwrite it
 safe_set histappend
+
+if has_command starship
+then
+	eval "$(starship init bash)"
+fi

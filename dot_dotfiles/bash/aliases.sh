@@ -28,7 +28,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-if command -v fdfind &> /dev/null
+if has_command fdfind
 then
 		alias fd="fdfind"
 fi

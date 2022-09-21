@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-prepend_path() {
+function has_command() {
+  command -v "$1" 1>/dev/null 2>&1
+}
+
+function prepend_path() {
   if [ -d "$1" ]; then
     export PATH="$1:$PATH"
   fi
