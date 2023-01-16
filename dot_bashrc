@@ -18,3 +18,7 @@ if [ -x ~/.dotfiles/bash ]; then
     done
     unset shellfile
 fi
+
+# Created by `pipx` on 2023-01-16 17:15:58
+export PATH="$PATH:/home/isaac/.local/bin"
+eval "$(starship init bash)"
